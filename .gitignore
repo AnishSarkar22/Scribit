@@ -12,7 +12,11 @@ dist
 dist-ssr
 *.local
 .venv/
-
+*.sqlite3
+db.sqlite3
+__pycache__/
+*.py[cod]
+*$py.class
 
 # Editor directories and files
 .vscode/*
