@@ -19,7 +19,7 @@ This project is a full-stack web application built using Django for the backend 
 - **Django**: Python web framework for building the API.
 - **Django REST Framework**: Toolkit for building Web APIs.
 - **Simple JWT**: Provides JWT authentication for Django REST Framework.
-- **PostgreSQL**: Relational database for storing application data.
+- **Supabase PostgreSQL**: Managed PostgreSQL database with session pooling.
 
 ### Frontend
 
@@ -38,39 +38,56 @@ This project is a full-stack web application built using Django for the backend 
 ```plaintext
 project-root/
 ├── backend/
-│   ├── backend/        # The main Django project directory
-│   ├── api/            # Django app containing the custom views and models
-│   ├── requirements.txt # Lists the Python dependencies
-│   ├── settings.py     # Configuration file for the Django project
-│   ├── manage.py       # Utility script to interact with the Django project
-│   ├── Procfile        # Specifies the command to start the application server
-│   ├── coreo/          # Directory for Coro deployment files
-│   │   ├── endpoints.yaml # Config file specifying the API endpoints
-│   ├── .env            # Contains the environment variables for the database connection
+│   ├── backend/                # Django project directory
+│   │   ├── __init__.py
+│   │   ├── settings.py        # Project settings
+│   │   ├── urls.py           # Main URL configuration
+│   │   ├── wsgi.py          # WSGI configuration
+│   │   └── asgi.py         # ASGI configuration
+│   │
+│   ├── api/                  # Django app directory
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── models.py        # Data models
+│   │   ├── serializers.py   # REST framework serializers
+│   │   ├── urls.py         # API URLs
+│   │   └── views.py        # API views
+│   │
+│   ├── manage.py            # Django management script
+│   ├── requirements.txt     # Python dependencies
+│   ├── Procfile            # Deployment configuration
+│   ├── coreo/              # Deployment configs
+│   │   └── endpoints.yaml
+│   └── .env               # Environment variables
 │
 ├── frontend/
 │   ├── src/
 │   │   ├── components/
-│   │   │   ├── protectedRoute.jsx    # Component for protecting routes
-│   │   │   ├── form.jsx              # Reusable form component
-│   │   │   ├── loadingIndicator.jsx  # Component that displays a loading animation
-│   │   │   ├── note.jsx              # Component to display a single note
+│   │   │   ├── ProtectedRoute.jsx
+│   │   │   ├── Form.jsx
+│   │   │   ├── LoadingIndicator.jsx
+│   │   │   └── Note.jsx
+│   │   │
 │   │   ├── pages/
-│   │   │   ├── login.jsx   # Component for the login page
-│   │   │   ├── register.jsx # Component for the registration page
-│   │   │   ├── home.jsx     # Component for the main user interface
-│   │   │   ├── notfound.jsx # Component for the 404 page
+│   │   │   ├── Login.jsx
+│   │   │   ├── Register.jsx
+│   │   │   ├── Home.jsx
+│   │   │   └── NotFound.jsx
+│   │   │
 │   │   ├── styles/
-│   │   │   ├── form.css  # CSS styles for the form component
-│   │   │   ├── note.css  # CSS styles for the note component
-│   │   │   ├── home.css  # CSS styles for the home component
-│   │   │   ├── loadingIndicator.css  # CSS styles for the loading indicator
-│   │   ├── constants.js # File for defining constants
-│   │   ├── api.js       # Handles API requests with Axios
-│   ├── package.json     # Lists the Node.js dependencies and scripts
-│   ├── .env            # Contains environment variables
+│   │   │   ├── Form.css
+│   │   │   ├── Note.css
+│   │   │   ├── Home.css
+│   │   │   └── LoadingIndicator.css
+│   │   │
+│   │   ├── constants.js
+│   │   └── api.js
+│   │
+│   ├── package.json
+│   └── .env
 │
-├── .gitignore           # Specifies intentionally untracked files that git should ignore
+└── .gitignore
 ```
 
 ## Setup and Installation
@@ -107,13 +124,15 @@ project-root/
    pip install -r requirements.txt
    ```
 
-4. Apply database migrations:
+4. Use `.env.sample` file in the backend directory and create `.env` file with Supabase database credentials
+
+5. Apply database migrations:
 
    ```bash
    python manage.py migrate
    ```
 
-5. Run the backend server:
+6. Run the backend server:
 
    ```bash
    python manage.py runserver
@@ -121,10 +140,10 @@ project-root/
 
 ### Frontend Setup
 
-1. Create the React application:
+1. Create the React+Vite application:
 
    ```bash
-   npm create vite@latest frontend --template react
+   npm create vite@latest
    ```
 
 2. Navigate to the frontend directory:
@@ -136,14 +155,24 @@ project-root/
 3. Install the required packages:
 
    ```bash
-   npm install
+   npm install react-toastify react-router-dom jwt-decode prop-types axios
    ```
 
-4. Start the development server:
+4. Create environment file:
+
+   ```bash
+   echo "VITE_API_URL=http://localhost:8000" > .env
+   ```
+
+5. Start the development server:
 
    ```bash
    npm run dev
    ```
+
+6. Verify the application at [http://localhost:5173](http://localhost:5173)
+
+**Note**: Make sure the backend Django server is running on port 8000 before starting the frontend development server.
 
 ## Deployment Setup
 
@@ -159,8 +188,3 @@ project-root/
 8. **Connect frontend and backend**: Connect the frontend to the backend API via a service URL.
 9. **Disable API Key**: In the deploy tab for the backend, disable the API key.
 10. **Redeploy the frontend**: After connecting the backend and frontend in the `api.js` file using the service URL, redeploy the frontend.
-
-## Important Notes
-
-- The database is a **trial database** in the developer tier and will be powered off every hour. You will need to manually power it back on.
-- The code in the GitHub repository contains all the completed code and can be referenced for troubleshooting.
