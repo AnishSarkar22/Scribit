@@ -163,6 +163,10 @@ project-root/
 
    ```bash
    echo "VITE_API_URL=http://localhost:8000" > .env
+
+   or
+
+   echo "VITE_API_URL=http://127.0.0.1:8000" > .env
    ```
 
 5. Start the development server:
