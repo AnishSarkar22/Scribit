@@ -29,10 +29,6 @@ This project is a full-stack web application built using Django for the backend 
 - **JWT Decode**: Library for decoding JSON Web Tokens.
 - **Vite**: Build tool for React applications.
 
-### Deployment
-
-- **Coro**: Platform for deploying and hosting both the backend and frontend.
-
 ## Project Structure
 
 ```plaintext
@@ -173,18 +169,3 @@ project-root/
 6. Verify the application at [http://localhost:5173](http://localhost:5173)
 
 **Note**: Make sure the backend Django server is running on port 8000 before starting the frontend development server.
-
-## Deployment Setup
-
-1. **Set up a Coro account**: Visit the Coro website and create a new account.
-2. **Create a database**: Create a PostgreSQL database in the Coro platform.
-3. **Set up environment variables**: Add environment variables from Coro to your `.env` file for the backend to connect to the remote database.
-4. **Create a Git repository**: Initialize a new Git repository, add the project files, and push to GitHub.
-5. **Create a new project**: In the Coro dashboard, create a new project and authorize it with GitHub.
-6. **Add services**: Add the backend and frontend services, specifying the build pack, directory, and versions.
-7. **Build and deploy**:
-   - Build the backend, add the environment variables, and deploy.
-   - Then build and deploy the frontend.
-8. **Connect frontend and backend**: Connect the frontend to the backend API via a service URL.
-9. **Disable API Key**: In the deploy tab for the backend, disable the API key.
-10. **Redeploy the frontend**: After connecting the backend and frontend in the `api.js` file using the service URL, redeploy the frontend.
