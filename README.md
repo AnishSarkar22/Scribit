@@ -1,6 +1,6 @@
-# Django & React Full Stack Web Application using Supabase database
+# Notes App using Django & React Full Stack Web Application using Supabase database
 
-This project is a full-stack web application built using Django for the backend and React for the frontend. It implements authentication using JWT (JSON Web Tokens). The application allows users to register, log in, create, read, update, and delete notes. Additionally, the project demonstrates how to deploy the application for free.
+This project is a full-stack web application built using Django for the backend and React for the frontend. It implements authentication using JWT (JSON Web Tokens). The application allows users to register, log in, create, read, update, and delete notes.
 
 ## Key Features
 
@@ -8,8 +8,7 @@ This project is a full-stack web application built using Django for the backend 
 - **Backend with Django**: Handles API requests, data storage, and user management.
 - **Frontend with React**: Provides the user interface for interacting with the API.
 - **JWT Authentication**: Secures the application with token-based authentication.
-- **Database integration**: Connects to a PostgreSQL database for robust data storage.
-- **Free Deployment**: Shows how to deploy the application using the Coro platform.
+- **Database integration**: Connects to a Supabase PostgreSQL database for robust data storage.
 - **CRUD Operations**: Implements create, read, update, and delete functionality for user notes.
 
 ## Technologies Used
@@ -33,57 +32,63 @@ This project is a full-stack web application built using Django for the backend 
 
 ```plaintext
 project-root/
+├── .gitignore
+├── README.md
+├── requirements.txt
 ├── backend/
-│   ├── backend/                # Django project directory
-│   │   ├── __init__.py
-│   │   ├── settings.py        # Project settings
-│   │   ├── urls.py           # Main URL configuration
-│   │   ├── wsgi.py          # WSGI configuration
-│   │   └── asgi.py         # ASGI configuration
-│   │
-│   ├── api/                  # Django app directory
+│   ├── .env
+│   ├── .env.sample
+│   ├── .gitignore
+│   ├── api/
 │   │   ├── __init__.py
 │   │   ├── admin.py
 │   │   ├── apps.py
-│   │   ├── models.py        # Data models
-│   │   ├── serializers.py   # REST framework serializers
-│   │   ├── urls.py         # API URLs
-│   │   └── views.py        # API views
-│   │
-│   ├── manage.py            # Django management script
-│   ├── requirements.txt     # Python dependencies
-│   ├── Procfile            # Deployment configuration
-│   ├── coreo/              # Deployment configs
-│   │   └── endpoints.yaml
-│   └── .env               # Environment variables
-│
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── ProtectedRoute.jsx
-│   │   │   ├── Form.jsx
-│   │   │   ├── LoadingIndicator.jsx
-│   │   │   └── Note.jsx
-│   │   │
-│   │   ├── pages/
-│   │   │   ├── Login.jsx
-│   │   │   ├── Register.jsx
-│   │   │   ├── Home.jsx
-│   │   │   └── NotFound.jsx
-│   │   │
-│   │   ├── styles/
-│   │   │   ├── Form.css
-│   │   │   ├── Note.css
-│   │   │   ├── Home.css
-│   │   │   └── LoadingIndicator.css
-│   │   │
-│   │   ├── constants.js
-│   │   └── api.js
-│   │
-│   ├── package.json
-│   └── .env
-│
-└── .gitignore
+│   │   ├── migrations/
+│   │   │   ├── __init__.py
+│   │   │   └── 0001_initial.py
+│   │   ├── models.py
+│   │   ├── serializers.py
+│   │   ├── tests.py
+│   │   ├── urls.py
+│   │   └── views.py
+│   ├── backend/
+│   │   ├── __init__.py
+│   │   ├── asgi.py
+│   │   ├── settings.py
+│   │   ├── supabase_client.py
+│   │   ├── urls.py
+│   │   └── wsgi.py
+│   ├── db.sqlite3
+│   └── manage.py
+└── frontend/
+    ├── .env
+    ├── .env.example
+    ├── eslint.config.js
+    ├── index.html
+    ├── package.json
+    ├── public/
+    │   └── vite.svg
+    ├── src/
+    │   ├── App.jsx
+    │   ├── api.js
+    │   ├── constants.js
+    │   ├── main.jsx
+    │   ├── components/
+    │   │   ├── Form.jsx
+    │   │   ├── LoadingIndicator.jsx
+    │   │   ├── Note.jsx
+    │   │   └── ProtectedRoute.jsx
+    │   ├── pages/
+    │   │   ├── Home.jsx
+    │   │   ├── Login.jsx
+    │   │   ├── NotFound.jsx
+    │   │   └── Register.jsx
+    │   └── styles/
+    │       ├── Form.css
+    │       ├── Home.css
+    │       ├── LoadingIndicator.css
+    │       └── Note.css
+    └── vite.config.js
 ```
 
 ## Setup and Installation
