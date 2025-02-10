@@ -1,4 +1,4 @@
-# Notes App using Django & React Full Stack Web Application using Supabase database
+# Full Stack Notes App with Django, React, and Supabase Database
 
 This project is a full-stack web application built using Django for the backend and React for the frontend. It implements authentication using JWT (JSON Web Tokens). The application allows users to register, log in, create, read, update, and delete notes.
 
