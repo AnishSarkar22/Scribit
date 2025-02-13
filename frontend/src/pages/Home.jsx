@@ -1,16 +1,25 @@
 { /* this is the dashboard after login */ }
 
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import api from "../api";
 import Note from "../components/Note";
 import "../styles/Home.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 
 function Home() {
   const [notes, setNotes] = useState([]);
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
+  const navigate = useNavigate(); 
+
+  const handleLogout = () => {
+    localStorage.removeItem(ACCESS_TOKEN);
+    localStorage.removeItem(REFRESH_TOKEN);
+    navigate("/login");
+  };
 
   useEffect(() => {
     getNotes();
@@ -106,11 +115,14 @@ function Home() {
       <ToastContainer />
       <header className="header">
         <h1>My Notes</h1>
+        <button onClick={handleLogout} className="logout-button">
+          Logout
+        </button>
       </header>
 
       <div className="content">
         <section className="notes-section">
-          <h2>Your Notes</h2>
+          {/* <h2>Your Notes</h2> */}
           <div className="notes-grid">
             {notes.map((note) => (
               <Note note={note} onDelete={deleteNote} key={note.id} />
