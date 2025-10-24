@@ -1,63 +1,65 @@
 .note-container {
-    font-family: 'Inter', sans-serif;
-    background: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+	font-family: "Inter", sans-serif;
+	background: #ffffff;
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	transition:
+		transform 0.2s ease,
+		box-shadow 0.2s ease;
 }
 
 .note-container:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .note-header {
-    padding: 15px;
-    border-bottom: 1px solid #edf2f7;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+	padding: 15px;
+	border-bottom: 1px solid #edf2f7;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .note-title {
-    margin: 0;
-    color: #2d3748;
-    font-size: 1.1rem;
-    font-weight: 600;
+	margin: 0;
+	color: #2d3748;
+	font-size: 1.1rem;
+	font-weight: 600;
 }
 
 .note-content {
-    padding: 15px;
-    color: #4a5568;
-    line-height: 1.5;
-    margin: 0;
-    min-height: 80px;
+	padding: 15px;
+	color: #4a5568;
+	line-height: 1.5;
+	margin: 0;
+	min-height: 80px;
 }
 
 .note-footer {
-    padding: 10px 15px;
-    border-top: 1px solid #edf2f7;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+	padding: 10px 15px;
+	border-top: 1px solid #edf2f7;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .note-date {
-    color: #718096;
-    font-size: 0.875rem;
+	color: #718096;
+	font-size: 0.875rem;
 }
 
 .delete-button {
-    background: none;
-    border: none;
-    color: #e53e3e;
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 0 5px;
-    line-height: 1;
-    transition: color 0.2s ease;
+	background: none;
+	border: none;
+	color: #e53e3e;
+	font-size: 1.5rem;
+	cursor: pointer;
+	padding: 0 5px;
+	line-height: 1;
+	transition: color 0.2s ease;
 }
 
 .delete-button:hover {
-    color: #c53030;
+	color: #c53030;
 }
