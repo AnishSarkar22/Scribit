@@ -10,12 +10,12 @@ function Note({ note, onDelete }) {
 	});
 
 	const updatedDate = note.updated_at
-        ? new Date(note.updated_at).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-          })
-        : null;
+		? new Date(note.updated_at).toLocaleDateString("en-US", {
+				year: "numeric",
+				month: "short",
+				day: "numeric",
+			})
+		: null;
 
 	return (
 		<div className="note-container">
@@ -33,8 +33,8 @@ function Note({ note, onDelete }) {
 			<div className="note-footer">
 				<span className="note-date">{createdDate}</span>
 				{updatedDate && updatedDate !== createdDate && (
-                    <span className="note-updated"> · Last edited: {updatedDate}</span>
-                )}
+					<span className="note-updated"> · Last edited: {updatedDate}</span>
+				)}
 			</div>
 		</div>
 	);
