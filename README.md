@@ -2,15 +2,6 @@
 
 This project is a full-stack web application built using Django for the backend and React for the frontend. It implements authentication using JWT (JSON Web Tokens). The application allows users to register, log in, create, read, update, and delete notes.
 
-## Key Features
-
-- **Full-stack development**: Utilizes both Python and JavaScript for a complete web application.
-- **Backend with Django**: Handles API requests, data storage, and user management.
-- **Frontend with React**: Provides the user interface for interacting with the API.
-- **JWT Authentication**: Secures the application with token-based authentication.
-- **Database integration**: Connects to a locally hosted PostgreSQL database.
-- **CRUD Operations**: Implements create, read, update, and delete functionality for user notes.
-
 ## Technologies Used
 
 ### Backend
@@ -19,6 +10,9 @@ This project is a full-stack web application built using Django for the backend 
 - **Django REST Framework**: Toolkit for building Web APIs.
 - **Simple JWT**: Provides JWT authentication for Django REST Framework.
 - **PostgreSQL (locally hosted)**: PostgreSQL database running locally for development.
+- **Uvicorn / ASGI**: Exposes an ASGI application and in production is typically served with Uvicorn.
+- **uv (package manager/runner)**: This project uses `uv` as the lightweight backend package manager/runner for commands and workflows.
+- **Ruff**: Fast linter/formatter for backend Python code to keep style and quality consistent.
 
 ### Frontend
 
@@ -27,6 +21,7 @@ This project is a full-stack web application built using Django for the backend 
 - **Axios**: HTTP client for making API requests.
 - **JWT Decode**: Library for decoding JSON Web Tokens.
 - **Vite**: Build tool for React applications.
+- **Biome**: For frontend linting and formatting (JS/TS/JSON/etc.) to keep consistency across the UI codebase.
 
 ## Setup and Installation
 
@@ -98,4 +93,3 @@ This project is a full-stack web application built using Django for the backend 
    ```bash
    pnpm run dev
    ```
-
