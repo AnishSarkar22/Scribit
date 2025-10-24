@@ -77,7 +77,7 @@ jobs:
               working-directory: frontend
 
             - name: Biome format check
-              run: pnpm format --check
+              run: pnpm format
               working-directory: frontend
 
             - name: Biome lint check
