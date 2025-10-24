@@ -1,6 +1,6 @@
 # Scribit - Full Stack Notes App with Django, React, and PostgreSQL
 
-This project is a full-stack web application built using Django for the backend and React for the frontend. It implements authentication using JWT (JSON Web Tokens). The application allows users to register, log in, create, read, update, and delete notes.
+This project is a self-hosted web application built using Django for the backend and React for the frontend. It implements authentication using JWT (JSON Web Tokens). The application allows users to register, log in, create, read, update, and delete notes.
 
 ## Technologies Used
 
