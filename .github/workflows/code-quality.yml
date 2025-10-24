@@ -1,0 +1,80 @@
+name: Code Quality Checks
+
+on:
+  pull_request:
+    branches:
+      - "main"
+    paths:
+      - "frontend/**"
+  push:
+    branches:
+      - "main"
+    paths:
+      - "frontend/**"
+
+jobs:
+  biome:
+    name: Biome checks (frontend)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate commit message prefixes
+        run: |
+          set -euo pipefail
+
+          # Ensure we have main to compare against
+          git fetch origin main --depth=1 || true
+
+          # Get commits not on main
+          commits=$(git rev-list --no-merges origin/main..HEAD || true)
+          if [ -z "$commits" ]; then
+              echo "No new commits to check."
+              exit 0
+          fi
+
+          echo "  Checking commit messages for allowed prefixes..."
+          bad=0
+          allowed_prefixes="fix|feature|chore|docs|refactor|test|ci|build|perf|style"
+
+          for sha in $commits; do
+              subject=$(git log -1 --format=%s "$sha")
+              if ! echo "$subject" | grep -Eq "^(${allowed_prefixes}):"; then
+                  echo "  Invalid commit message for $sha:"
+                  echo "   \"$subject\""
+                  echo "   Commit message must start with one of: ${allowed_prefixes}"
+                  bad=1
+              fi
+          done
+
+          if [ $bad -eq 1 ]; then
+              echo " Commit message validation failed."
+              exit 1
+          fi
+
+          echo " All commit messages have valid prefixes."
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "pnpm"
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        working-directory: frontend
+
+      - name: Biome format check
+        run: pnpm format --check
+        working-directory: frontend
+
+      - name: Biome lint check
+        run: pnpm lint
+        working-directory: frontend
