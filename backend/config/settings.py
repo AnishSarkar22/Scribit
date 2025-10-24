@@ -75,7 +75,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
-ROOT_URLCONF = 'backend.urls'
+ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
     {
@@ -93,32 +93,51 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'backend.wsgi.application'
+WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 
-DATABASES = {
-    
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
-    
-    # used "Session pooler" in supabase
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('SUPABASE_DB_NAME'),
-        'USER': os.environ.get('SUPABASE_DB_USER'),
-        'PASSWORD': os.environ.get('SUPABASE_DB_PASSWORD'),
-        'HOST': os.environ.get('SUPABASE_DB_HOST'),
-        'PORT': os.environ.get('SUPABASE_DB_PORT'),
-        'OPTIONS': {
-            'sslmode': 'require',
+DATABASE_URL = os.environ.get("DATABASE_URL")
+
+if DATABASE_URL:
+    # Use dj-database-url to parse DATABASE_URL
+    DATABASES = {
+        "default": dj_database_url.parse(DATABASE_URL, conn_max_age=600)
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ.get('LOCAL_DB_NAME', 'scribit_db'),
+            'USER': os.environ.get('LOCAL_DB_USER', 'scribit_user'),
+            'PASSWORD': os.environ.get('LOCAL_DB_PASSWORD', 'password'),
+            'HOST': os.environ.get('LOCAL_DB_HOST', 'localhost'),
+            'PORT': os.environ.get('LOCAL_DB_PORT', '5432'),
         }
     }
-}
+
+# DATABASES = {
+    
+#     # 'default': {
+#     #     'ENGINE': 'django.db.backends.sqlite3',
+#     #     'NAME': BASE_DIR / 'db.sqlite3',
+#     # }
+    
+#     # used "Session pooler" in supabase
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.environ.get('SUPABASE_DB_NAME'),
+#         'USER': os.environ.get('SUPABASE_DB_USER'),
+#         'PASSWORD': os.environ.get('SUPABASE_DB_PASSWORD'),
+#         'HOST': os.environ.get('SUPABASE_DB_HOST'),
+#         'PORT': os.environ.get('SUPABASE_DB_PORT'),
+#         'OPTIONS': {
+#             'sslmode': 'require',
+#         }
+#     }
+# }
 
 
 # Password validation
